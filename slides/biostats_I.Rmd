@@ -1,0 +1,96 @@
+---
+title: "Introduction to Epidemiology and Biostatistics I"
+subtitle: "UW Neurology Fellowship"
+author: "Marlena Bannick"
+date: "6/18/2020"
+output: beamer_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(beeswarm)
+beeswarm_sim <- function(n, mean1, mean2, add_means=FALSE, add_beeswarm=TRUE){
+  group_1 <- rnorm(n, mean=mean1)
+  group_2 <- rnorm(n, mean=mean2)
+  df <- data.frame(
+    group=c(rep("group_1", n), rep("group_2", n)),
+    mean=c(group_1, group_2)
+  )
+  if(add_beeswarm){
+    beeswarm(mean ~ group, data=df, col=c("purple", "gold"), pch=16)
+  }
+  if(add_means){
+    boxplot(mean ~ group, data=df, add=add_beeswarm, col="#0000ff22")
+  }
+}
+```
+
+## Introduction
+
+**Marlena Bannick**
+
+PhD Student in Biostatistics at the University of Washington
+
+Math Sciences Researcher at the Institute for Health Metrics and Evaluation
+
+## Goal
+
+Introduce you to epidemiological thinking and key (bio)statistical concepts that you can use to critically interpret scientific studies in health and medicine.
+
+## Learning Objectives I.
+
+- Identify key elements of an epidemiological study and how they relate to the scientific question
+- Recognize the basic types of epidemiological study design and identify when each design is appropriate for the scientific question
+- Recognize sources of bias in study designs or measurements and understand how they might affect your ability to answer the scientific question
+
+## Learning Objectives II.
+
+- Understand how you can formulate your understanding about a data generating process, assumptions, and a hypothesis to test in a statistical model
+- Recognize the distinction between an effect size, a confidence interval, and a p-value as they relate to parameters that are estimated in a statistical model
+
+## Simple Means
+
+```{r}
+set.seed(0)
+beeswarm_sim(n=10, mean1=2.0, mean2=2.5)
+```
+
+## Simple Means
+
+```{r}
+set.seed(0)
+beeswarm_sim(n=10, mean1=2.0, mean2=2.5, add_means=TRUE)
+```
+
+## Small Effect Size, Small Sample Size
+
+```{r}
+set.seed(0)
+par(mfrow=c(2, 2))
+for(i in 1:4){
+  beeswarm_sim(n=10, mean1=2.0, mean2=2.5, add_means=TRUE)
+}
+```
+
+## Large Effect Size, Small Sample Size
+
+```{r}
+set.seed(0)
+par(mfrow=c(2, 2))
+for(i in 1:4){
+  beeswarm_sim(n=10, mean1=2., mean2=10., add_means=TRUE)
+}
+```
+
+## Small Effect Size, Large Sample Size
+
+```{r}
+set.seed(0)
+par(mfrow=c(2, 2))
+for(i in 1:4){
+  beeswarm_sim(n=100000, mean1=2.0, mean2=2.5, add_means=TRUE, add_beeswarm=FALSE)
+}
+```
+
+## Slide with Plot
+
