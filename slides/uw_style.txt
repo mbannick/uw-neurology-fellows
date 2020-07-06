@@ -1,0 +1,20 @@
+\usetheme[
+  outer/progressbar=foot,
+  outer/numbering=none,
+  sectionpage=progressbar,
+  progressbar=frametitle
+]{metropolis}
+\definecolor{Purple}{HTML}{4b2e83}
+\definecolor{Black}{HTML}{000000}
+\definecolor{Orange}{HTML}{1C608A}
+\definecolor{White}{HTML}{FFFFFF}
+\definecolor{Gold}{HTML}{746643}
+\definecolor{LightGold}{HTML}{D2C7AC}
+\setbeamercolor{alerted text}{fg=Gold}
+\setbeamercolor{frametitle}{bg=Purple, fg=LightGold}
+\setbeamercolor{title}{fg=Gold}
+\setbeamercolor{subtitle}{fg=Black}
+\setbeamercolor{normal text}{fg=Black}
+\setbeamercolor{background canvas}{bg=White}
+\setbeamertemplate{itemize items}{$-$}
+
