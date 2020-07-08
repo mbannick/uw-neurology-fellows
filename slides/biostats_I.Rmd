@@ -10,6 +10,7 @@ output:
   beamer_presentation:
     includes:
       in_header: uw_style.txt
+urlcolor: blue
 ---
 
 ```{r setup, include=FALSE}
@@ -115,13 +116,35 @@ How would you make these questions more precise?
 
 ## Study Design
 
+With a binary exposure and a binary outcome, the results of a study will look something like this 2x2 table:
+
+```{r table3, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
+df <- data.frame(Exposure = c("Exposed", "Unexposed"), 
+                 Outcome = linebreak(c("a", "b")), 
+                 NoOutcome = linebreak(c("c", "d")))
+kable(df, col.names = c("", "Outcome", "No Outcome"), escape = F,
+      caption="Example 2x2 Table") %>%
+  kable_styling(latex_options = "hold_position")
+```
 
 
-- **Randomized controlled trials**
-- **Cohort studies**
-- **Case control studies**
-- **Cross-sectional studies**
-- **Case reports**
+But there are _so many ways_ to obtain that 2x2 table, so it is imperative to understand the study design behind the data!
+
+Understanding study design will make it clear **what are the valid analyses** that can be performed on the data in that table.
+
+## Study Design
+
+Starting with what is typically considered the studies that will provide the "strongest" evidence of a _causal_ relationship between an exposure and an outcome:
+
+- **Randomized controlled trials**: participants are _randomly_ assigned to an exposure treatment or a control and followed up over time to record outcomes
+- **Cohort studies**: participants are selected based on their exposure status and followed up to record outcomes
+- **Case control studies**: participants are selected based on their outcome status and we inquire about exposure in the past
+- **Cross-sectional studies**: measure exposure and outcome of participants at the same point in time (no temporal element)
+- **Case reports**: report on the outcome status of one or a handful of interesting cases
+
+## Study Design
+
+![](../media/study-design.png)
 
 ## Biases
 
@@ -129,13 +152,43 @@ Biases in the epidemiological context are any factors in your study that _preven
 
 Biases may result from systematically incorrect measurements of the outcome, the exposure, or the population.
 
+Some study designs may avoid certain types of bias, but it is crucial to always be on the lookout for sneaky biases when designing, analyzing, or reading a study.
+
 ## Biases
 
 Examples of biases include:
 
 - **Selection bias**: the population that you want to study is not the population that is actually in your study
+- **Confounding bias**: the relationship between exposure and outcome among those in your study is _confounded_ by other variables (more later)
 - **Recall bias**: individuals are being asked about exposures or outcomes that they do not remember correctly
 - **Social desirability bias**: individuals are not comfortable disclosing their true exposure or outcome status for fear of judgement by others
+
+This is by no means an exhaustive list. See [a catalogue of bias](https://catalogofbias.org/biases/) for a taxonomy and more examples.
+
+## Biases & Study Design
+
+- Randomized controlled trials are designed to _eliminate bias_: statistically speaking, we do not expect there to be significant differences in the characteristics of the treatment groups
+- Observational study designs like cohort studies and case control studies _observe_ what's already happening -- what if those that are exposed also have characteristics that make it more likely that they will have the outcome (**confounding**: more later)?
+- Studies that rely on participants to self-ascertain, or to recall things from the past (e.g. case control studies) may result in systematic measurement error of exposure or outcome
+
+## Selection Bias
+
+Recall our example inferential question: **What is the effect of an experimental treatment on mortality following ischemic stroke in women age 45 - 60?**
+
+Consider the following sampling strategies:
+
+- Sample women aged 45 - 60 who have been discharged from the hospital following ischemic stroke, randomly assign some to experimental treatment.
+- Sample women aged 45 - 60 who have been admitted to the hospital for ischemic stroke, randomly assign some to experimental treatment.
+
+Which may suffer from selection bias? 
+
+## Confounding
+
+Again, recall our example inferential question: **What is the effect of an experimental treatment on mortality following ischemic stroke in women age 45 - 60?**
+
+What if we do not assign the experimental treatment, but the physician decides whether or not to administer treatment to the patient?
+
+For a gentle introduction to similar problems and techniques that control for such problems in observational study designs, check out [The Book of Why](http://bayes.cs.ucla.edu/WHY/) by Judea Pearl.
 
 ## Inference: Simple Means
 
