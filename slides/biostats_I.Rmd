@@ -222,7 +222,7 @@ $$
 
 If we knew $\theta$, then it might be interesting to generate some $Y$'s. In fact, many mathematical modelers do this. But we are interested in the *inverse problem* -- given $Y$, then what was $\theta$?
 
-_The assumptions that you made in your study design go into $f(\theta)$_.
+_The assumptions that you made in your study design go into $f(\theta)$ -- and in many ways **you** generated that data!_
 
 ## Modeling: Linear Models
 
@@ -314,11 +314,9 @@ Odds ratios are often reported in case control studies (because of the artificia
 
 ## Modeling: Notes
 
-Other link functions and statistical distributions can be used to model all sorts of processes (e.g. count data).
-
-What I've presented so far is considered _parametric_ modeling, and it is common in epidemiology.
-
-You may come across _semi-_ or _non-parametric_ modeling as you're reading literature. It is a way to make fewer assumptions about the data generating process, but will typically come with the tradeoff of increased variability in the result.
+- Other link functions and statistical distributions can be used to model all sorts of processes (e.g. count data).
+- I've only presented examples where the independent variables (or "covariates") are binary 0/1. The same methods can be used when the independent variable is continuous.
+- What I've presented so far is considered _parametric_ modeling, and it is common in epidemiology. You may come across _semi-_ or _non-parametric_ modeling as you're reading literature. It is a way to make fewer assumptions about the data generating process, but will typically come with the tradeoff of increased variability in the result.
 
 ## Inference
 
