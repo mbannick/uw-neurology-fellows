@@ -49,7 +49,7 @@ Introduce you to epidemiological thinking and key (bio)statistical concepts that
 4. **Modeling**. Understand how you can formulate your understanding about a data generating process, assumptions, and a hypothesis to test in a statistical model
 5. **Inference**. Recognize the distinction between an effect size, a confidence interval, and a p-value as they relate to parameters that are estimated in a statistical model
 
-# TODO -- talk about \beta inference in the example
+TODO -- talk about \beta inference in the example
 
 ## Further Study
 
@@ -87,8 +87,14 @@ Some common outcome measurements in the context of health sciences are
 - **prevalence**: proportion of a population with an outcome
 - **incidence**: rate of getting the outcome among individuals in a population that did not already have the outcome ("risk")
 - **remission**: rate of returning to be outcome-free among those that had the outcome
+- **odds**: $\frac{p}{1 - p}$ where $p$ is a proportion
 
-Think about denominators!
+_Think about denominators!_
+
+Measures of comparison between two exposure groups include:
+
+- **relative risk** or **risk difference**: comparing incidence of an outcome between two groups
+- **odds ratio**: comparing odds of an outcome between two groups
 
 ## Basics: 2x2 Tables
 
@@ -109,19 +115,13 @@ Understanding study design will make it clear **what are the valid analyses** th
 
 ## Basics: Example
 
-# TODO: DITCH DESCRIPTIVE
-What are the exposure, outcome, and population for each of these scientific questions?
+What are the exposure, outcome, and population for the following question?
 
-- **descriptive**: What is the incidence rate of ischemic stroke (IS) in women age 45 - 60 years old?
-- **inferential**: What is the effect of an experimental treatment on mortality following ischemic stroke in women age 45 - 60?
+**What is the effect of an experimental treatment on mortality following ischemic stroke in women age 45 - 60?**
 
-```{r table, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
-df <- data.frame(Type = c("Exposure", "Outcome", "Population"), 
-                 Descriptive = linebreak(c(" ", " ", " ")), 
-                 Inferential = linebreak(c(" ", " ", " ")))
-kable(df, col.names = c("", "Descriptive", "Inferential"), escape = F, caption = "Basic Elements of Study Design") %>%
-  kable_styling(latex_options = "hold_position")
-```
+- Population:
+- Exposure:
+- Outcome:
 
 ## Basics: Example
 
@@ -130,13 +130,11 @@ What are the exposure, outcome, and population for each of these scientific ques
 - **descriptive**: What is the incidence rate of ischemic stroke (IS) in women age 45 - 60 years old?
 - **inferential**: What is the effect of an experimental treatment on mortality following ischemic stroke in women age 45 - 60?
 
-```{r table2, echo=FALSE, message=FALSE, warnings=FALSE, results='asis'}
-df <- data.frame(Type = c("Exposure", "Outcome", "Population"), 
-                 Descriptive = linebreak(c(" ", "ischemic stroke (IS)", "women age 45-60 without IS")), 
-                 Inferential = linebreak(c("experimental treatment", "death from IS", "women age 45-60 with IS")))
-kable(df, col.names = c("", "Descriptive", "Inferential"), escape = F) %>%
-  kable_styling(latex_options = "hold_position")
-```
+**What is the effect of an experimental treatment on mortality following ischemic stroke in women age 45 - 60?**
+
+- Population: **women age 45-60 who have had ischemic stroke**
+- Exposure: **experimental treatment**
+- Outcome: **death from ischemic stroke**
 
 How would you make these questions more precise?
 
@@ -144,17 +142,52 @@ How would you make these questions more precise?
 
 Starting with what is typically considered the studies that will provide the "strongest" evidence of a _causal_ relationship between an exposure and an outcome:
 
-# TODO: Split these out into a slide for each with the diagram for each
+Experimental Designs
+- **Randomized controlled trials**
 
-- **Randomized controlled trials**: participants are _randomly_ assigned to an exposure treatment or a control and followed up over time to record outcomes
-- **Cohort studies**: participants are selected based on their exposure status and followed up to record outcomes
-- **Case control studies**: participants are selected based on their outcome status and we inquire about exposure in the past
-- **Cross-sectional studies**: measure exposure and outcome of participants at the same point in time (no temporal element)
-- **Case reports**: report on the outcome status of one or a handful of interesting cases
+Observational Designs
+- **Cohort studies**
+- **Case control studies**
+- **Cross-sectional studies**
+- **Case reports**
 
-## Study Design: Diagram of Types
+## Study Design: Randomized Controlled Trials
 
-![](../media/study-design.png)
+An experimental setting in which participants are enrolled and then _randomly_ assigned to a treatment or a control and followed up over time to record outcomes.
+
+- Ideal for inferring causal relationships because there are no significant differences between treatment and control groups, both in terms of factors we can measure and factors we cannot measure (more later with confounding)
+- They are expensive, time consuming, and not always feasible or ethical (think smoking)
+
+![](../media/study-design-rct.png)
+
+## Study Design: Cohort Study
+
+An observational design where participants are selected based on their exposure status and followed up to record outcomes at designated time points.
+
+- Similar to a randomized controlled trial with one key difference: the exposures are not randomized! You may only **observe what is already happening**.
+
+![](../media/study-design-cohort.png)
+
+## Study Design: Case-Control Study
+
+An observational design where participants are selected based on their outcome status and we inquire about exposure in the past. Think of it as the opposite of a cohort study, looking back in time.
+
+- May be subject to biases like *recall bias* (more later)
+- The artificial distribution of cases and controls means you cannot naively compute "prevalence" of the outcome or "relative risk"
+
+![](../media/study-design-cc.png)
+
+## Study Design: Cross-Sectional Study
+
+An observational design where you measure exposure and outcome of participants at the same point in time (no temporal element).
+
+![](../media/study-design-cross.png)
+
+## Study Design: Case Report
+
+An observational design where you report on the outcome status of one or a handful of interesting cases. "Anecdotal" evidence.
+
+![](../media/study-design-case.png)
 
 ## Study Design: Example
 
@@ -174,10 +207,8 @@ Biases in the epidemiological context are any factors in your study that **preve
 
 Biases may result from systematically flawed measurements of the outcome, the exposure, or the population, categorized generally as:
 
-# TODO: Color code the selection and information in the next slide
-
-- **selection biases**: biases that are a function of the sampling or selection of participants for the study -> cannot generalize to target population
-- **information biases**: biases that are a function of how the measurements on participants are taken
+- \textcolor{red}{**selection biases**}: biases that are a function of the sampling or selection of participants for the study -> cannot generalize to target population
+- \textcolor{blue}{**information biases**}: biases that are a function of how the measurements on participants are taken
 
 Some study designs may avoid certain types of bias, but it is crucial to always be on the lookout for sneaky biases when designing, analyzing, or reading a study.
 
@@ -191,14 +222,6 @@ Examples of biases include:
 - **Social desirability bias**: individuals are not comfortable disclosing their true exposure or outcome status for fear of judgement by others
 
 This is by no means an exhaustive list. See [a catalogue of bias](https://catalogofbias.org/biases/) for a taxonomy and more examples.
-
-## Biases: Comments on Study Design
-
-# TODO: Eliminate and put information in the study-specific slides
-
-- Randomized controlled trials are designed to **eliminate bias**: statistically speaking, we do not expect there to be significant differences in the characteristics of the treatment groups
-- Observational study designs like cohort studies and case control studies **observe what's already happening** -- what if those that are exposed also have characteristics that make it more likely that they will have the outcome (**confounding**: more later)?
-- Studies that rely on participants to self-ascertain, or to recall things from the past (e.g. case control studies) may result in systematic measurement error of exposure or outcome (information bias)
 
 ## Biases: Selection Bias Diagram
 
@@ -380,17 +403,6 @@ Odds ratios are often reported in case control studies (because of the artificia
 - I've only presented examples where the independent variables (or "covariates") are binary 0/1. The same methods can be used when the independent variable is continuous.
 - What I've presented so far is considered _parametric_ modeling, and it is common in epidemiology. You may come across _semi-_ or _non-parametric_ modeling as you're reading literature. It is a way to make fewer assumptions about the data generating process, but will typically come with the tradeoff of increased variability in the result.
 
-## Inference
-
-How do we actually estimate $\theta$ in $Y = f(\theta)$? There are a variety of techniques depending on what $f$ is, but one thing is for certain -- **there will always be uncertainty**.
-
-We want to **infer** what $\theta$ is to some degree of confidence (typically 95% confidence).
-
-In medical literature, typically what you will see reported for a parameter are:
-
-- Point estimate: the "best guess" for the parameter (in statistical terms, the "most likely" value)
-- Confidence interval (95%): if this experiment were to be replicated 100 times, 95 of the confidence intervals constructed would cover the **true unknown parameter**
-- p-value: quantifies the significance of an association
 
 ## Inference: Simple Means
 
