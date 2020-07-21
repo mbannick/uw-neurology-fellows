@@ -49,11 +49,8 @@ Introduce you to epidemiological thinking and key (bio)statistical concepts that
 4. **Modeling**. Understand how you can formulate your understanding about a data generating process, assumptions, and a hypothesis to test in a statistical model
 5. **Inference**. Recognize the distinction between an effect size, a confidence interval, and a p-value as they relate to parameters that are estimated in a statistical model
 
-<<<<<<< HEAD
-=======
 TODO -- talk about $\beta$ inference in the example
 
->>>>>>> fixes
 ## Further Study
 
 This lecture and follow-up discussion will be a very brief introduction, with some material borrowed from the following texts. These are good introduction texts to epidemiology and biostatistics:
@@ -118,11 +115,7 @@ Understanding study design will make it clear **what are the valid analyses** th
 
 ## Basics: Example
 
-<<<<<<< HEAD
-What are the exposure, outcome, and population for each of these scientific questions?
-=======
-What are the exposure, outcome, and population for the following question?
->>>>>>> fixes
+What are the exposure, outcome, and population for the following scientific question?
 
 **What is the effect of an experimental treatment on mortality following ischemic stroke in women age 45 - 60?**
 
@@ -132,7 +125,7 @@ What are the exposure, outcome, and population for the following question?
 
 ## Basics: Example
 
-What are the exposure, outcome, and population for each of these scientific questions?
+What are the exposure, outcome, and population for the following scientific question?
 
 **What is the effect of an experimental treatment on mortality following ischemic stroke in women age 45 - 60?**
 
@@ -146,8 +139,6 @@ How would you make these questions more precise?
 
 Starting with what is typically considered the studies that will provide the "strongest" evidence of a _causal_ relationship between an exposure and an outcome:
 
-<<<<<<< HEAD
-=======
 Experimental Designs
 
 - Randomized controlled trials
@@ -162,7 +153,6 @@ Observational Designs
 ## Study Design: Randomized Controlled Trials
 
 An experimental setting in which participants are enrolled and then _randomly_ assigned to a treatment or a control and followed up over time to record outcomes.
->>>>>>> fixes
 
 - Ideal for inferring causal relationships because there are no significant differences between treatment and control groups, both in terms of factors we can measure and factors we cannot measure (more later with confounding)
 - They are expensive, time consuming, and not always feasible or ethical (think smoking)
@@ -216,14 +206,8 @@ Biases in the epidemiological context are any factors in your study that **preve
 
 Biases may result from systematically flawed measurements of the outcome, the exposure, or the population, categorized generally as:
 
-<<<<<<< HEAD
-
-- **selection biases**: biases that are a function of the sampling or selection of participants for the study -> cannot generalize to target population
-- **information biases**: biases that are a function of how the measurements on participants are taken
-=======
 - **\textcolor{red}{selection biases}**: biases that are a function of the sampling or selection of participants for the study -> cannot generalize to target population
 - **\textcolor{blue}{information biases}**: biases that are a function of how the measurements on participants are taken
->>>>>>> fixes
 
 Some study designs may avoid certain types of bias, but it is crucial to always be on the lookout for sneaky biases when designing, analyzing, or reading a study.
 
@@ -238,16 +222,6 @@ Examples of biases include:
 
 This is by no means an exhaustive list. See [a catalogue of bias](https://catalogofbias.org/biases/) for a taxonomy and more examples.
 
-<<<<<<< HEAD
-## Biases: Comments on Study Design
-
-
-- Randomized controlled trials are designed to **eliminate bias**: statistically speaking, we do not expect there to be significant differences in the characteristics of the treatment groups
-- Observational study designs like cohort studies and case control studies **observe what's already happening** -- what if those that are exposed also have characteristics that make it more likely that they will have the outcome (**confounding**: more later)?
-- Studies that rely on participants to self-ascertain, or to recall things from the past (e.g. case control studies) may result in systematic measurement error of exposure or outcome (information bias)
-
-=======
->>>>>>> fixes
 ## Biases: Selection Bias Diagram
 
 An example of selection bias is loss to follow-up. Consider a situation where 
