@@ -399,6 +399,44 @@ This is called _logistic regression_. Now $\alpha + \beta x$ explicitly modify t
 - I've only presented examples where the independent variables (or "covariates") are binary 0/1. The same methods can be used when the independent variable is continuous.
 - What I've presented so far is considered _parametric_ modeling, and it is common in epidemiology. You may come across _semi-_ or _non-parametric_ modeling as you're reading literature. It is a way to make fewer assumptions about the data generating process, but will typically come with the tradeoff of increased variability in the result.
 
+## Inference
+
+How do we actually estimate $\theta$ in $Y = f(\theta)$? There are a variety of techniques depending on what $f$ is, but one thing is for certain -- **there will always be uncertainty**.
+
+Inference is about making our **best guess** about $\theta$, and providing some degree of **confidence** in that guess (typically 95% confidence). This may also include a **p-value** for a hypothesis test.
+
+Let's walk into these three elements in more detail -- (1) point estimates, (2) confidence intervals, and (3) p-values.
+
+## Inference: Point Estimates
+
+In order to make the "best guess" for the parameter we use information about the distribution that is specified (e.g. normal distribution) and combine all of the observations together to figure out what value of $\theta$ is the **most likely**.
+
+The **most likely** value is reported as the **point estimate**.  
+  
+*"We estimate a risk ratio of **1.10**, meaning that there was a 10% increased risk of having the outcome in the exposed group compared to controls."*
+
+## Inference: Confidence Intervals
+
+Confidence intervals (typically 95%) represent the degree of uncertainty that we have in our point estimate.
+
+The interpretation is a bit counter-intuitive: if this experiment were to be replicated 100 times, 95 of the confidence intervals constructed in these experiments would cover the **true parameter**.
+
+*"We estimate a risk ratio of **1.10 (1.05 - 1.15)**, meaning that there was a 10% (5% - 15%) increased risk of having the outcome in the exposed group compared to controls."*
+
+## Inference: P-Values
+
+If we have some estimate of $\theta$, $\hat{\theta}$, p-values make sense in the context of a **hypothesis test**. It might look something like this:
+
+$$
+H_0: \theta = 0 \quad H_1: \theta \neq 0
+$$
+
+This means: my **null** hypothesis is that $\theta = 0$. In linear regression, if $\theta$ was the slope of the line, that means _there is no slope_ (or no association).
+
+A **p-value** of 0.05 has the following interpretation: the chance of seeing a result this extreme or more extreme **if the null hypothesis were true** is 5%.
+
+*"We estimate a risk ratio of **1.10** with a p-value of 0.02. If there were truly no increased risk, there is a 2% chance we would see a result this extreme or more extreme."*
+
 ## Inference: Simple Means
 
 ```{r}
