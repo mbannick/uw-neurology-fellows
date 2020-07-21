@@ -91,12 +91,15 @@ Some common outcome measurements in the context of health sciences are
 
 _Think about denominators!_
 
+A common measurement in clinical epidemiology is **survival**, or time to some endpoint. We do not have time to go into details, but I recommend [this source](https://www.nature.com/articles/6601118) as a starting point.
+
 ## Basics: Measures for Comparisons
 
 Common measures of comparison between two exposure groups include functions of the measures we just discussed:
 
 - **relative risk** or **risk difference**: comparing incidence of an outcome between two groups as a difference or a ratio
 - **odds ratio**: comparing odds of an outcome between two groups as a ratio
+- **hazard ratio**: compares the "hazard" of an outcome between two groups -- used commonly in survival analysis
 
 ## Basics: 2x2 Tables
 
@@ -115,7 +118,7 @@ But there are _so many ways_ to obtain that 2x2 table, so it is imperative to un
 
 Understanding study design will make it clear **what are the valid analyses** that can be performed on the data in that table.
 
-## Basics: Example
+## Basics: Example (1/2)
 
 What are the exposure, outcome, and population for the following scientific question?
 
@@ -125,7 +128,7 @@ What are the exposure, outcome, and population for the following scientific ques
 - Exposure:
 - Outcome:
 
-## Basics: Example
+## Basics: Example (2/2)
 
 What are the exposure, outcome, and population for the following scientific question?
 
@@ -367,7 +370,7 @@ text(x=1.45, y=4, expression(beta))
 text(x=0.5, y=6, expression(alpha + beta))
 ```
 
-## Modeling: Example
+## Modeling: Example (1/3)
 
 Think back to our randomized controlled trial for women that have had a stroke, and let $Y$ be whether or not they died, and $X$ be their treatment group. We might start with the same linear model:
 
@@ -377,7 +380,7 @@ $$
 
 Do you see any problems with how this model is parametrized?
 
-## Modeling: Example
+## Modeling: Example (2/3)
 
 Think back to our randomized controlled trial for women that have had a stroke, and let $Y$ be whether or not they died, and $X$ be their treatment group. We might start with the same linear model:
 
@@ -386,7 +389,7 @@ Mean[Y|X] = Proportion[Y|X] = \alpha + \beta X
 $$
 Do you see any problems with how this model is parametrized? **Yes! The mean can go beyond the [0, 1] range, which doesn't make sense for a proportion.**
 
-## Modeling: Example
+## Modeling: Example (3/3)
 
 From our example, it makes most sense to think of $Y$ as a flip of a loaded coin -- this is the Bernoulli distribution -- and how loaded the coin is depends on the group $X$.
 
@@ -518,7 +521,6 @@ for(i in 1:4){
 }
 ```
 
-
 ## Key Take-Aways
 
 - A good study has meticulously defined its exposure(s), outcome(s), and population(s).
@@ -528,9 +530,22 @@ for(i in 1:4){
 
 ## Discussion Articles
 
-Next week we will discuss the following journal article:
+Next week we will discuss the following journal articles:
 
+1. Anang et al. 2014. Predictors of dementia in Parkinson disease: A prospective cohort study. *Neurology* 83 (14). https://doi.org/10.1212/WNL.0000000000000842.
+2. Caunca et al. 2019. Measures of obesity are associated with MR markers of brain aging: The Northern Manhattan Study. *Neurology*, 93:e791-e803.  https://doi.org/10.1212/WNL.0000000000007966.
 
+## Disscussion Articles: Questions (1/2)
+
+1. What is the scientific question of interest? Cearly define the exposure, outcome, and study population.
+2. What study design did the authors use to gather data, and was it appropriate? Were there alternative study designs that could have been used?
+3. Are there any sources of bias introduced from the study design including in who was included in the study population or how the exposure and/or outcome were ascertained that hinder the authors' ability to answer their scientific question?
+
+## Discussion Articles: Questions (2/2)
+
+4. How did the authors formulate their hypothesis into a statistical model? What assumptions did the authors make when they chose that statistical model? Do you think that the assumptions they made limit their ability to answer their scientific question of interest?
+5. How did the authors interpret the results of their analysis? Did they emphasize clinical significance or statistical significance?
+6. How did the authors frame the limitations and implications of their results? Were they cognizant of their assumptions and potential biases?
 
 ## Thank you!
 
