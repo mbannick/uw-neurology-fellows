@@ -51,8 +51,6 @@ Introduce you to epidemiological thinking and key (bio)statistical concepts that
 4. **Modeling**. Understand how you can formulate your understanding about a data generating process, assumptions, and a hypothesis to test in a statistical model
 5. **Inference**. Recognize the distinction between an effect size, a confidence interval, and a p-value as they relate to parameters that are estimated in a statistical model
 
-TODO -- talk about $\beta$ inference in the example
-
 ## Further Study
 
 This lecture and follow-up discussion will be a very brief introduction, with some material borrowed from the following texts. These are good introduction texts to epidemiology and biostatistics:
@@ -170,7 +168,7 @@ An observational design where participants are selected based on their exposure 
 
 - Similar to a randomized controlled trial with one key difference: the exposures are not randomized! You may only **observe what is already happening**.
 
-![](../media/study-design-cohort.png){width=85%}
+![](../media/study-design-cohort.png){width=75%}
 
 ## Study Design: Case-Control Study
 
@@ -179,13 +177,13 @@ An observational design where participants are selected based on their outcome s
 - May be subject to biases like *recall bias* (more later)
 - The artificial distribution of cases and controls means you cannot naively compute "prevalence" of the outcome or "relative risk"
 
-![](../media/study-design-cc.png)
+![](../media/study-design-cc.png){width=70%}
 
 ## Study Design: Cross-Sectional Study
 
 An observational design where you measure exposure and outcome of participants at the same point in time (no temporal element).
 
-![](../media/study-design-cross.png)
+![](../media/study-design-cross.png){width=70%}
 
 ## Study Design: Case Report
 
@@ -212,7 +210,7 @@ Biases in the epidemiological context are any factors in your study that **preve
 Biases may result from systematically flawed measurements of the outcome, the exposure, or the population, categorized generally as:
 
 - **\textcolor{red}{selection biases}**: biases that are a function of the sampling or selection of participants for the study -> cannot generalize to target population
-- **\textcolor{blue}{information biases}**: biases that are a function of how the measurements on participants are taken
+- **\textcolor{purple}{information biases}**: biases that are a function of how the measurements on participants are taken
 
 Some study designs may avoid certain types of bias, but it is crucial to always be on the lookout for sneaky biases when designing, analyzing, or reading a study.
 
@@ -221,9 +219,9 @@ Some study designs may avoid certain types of bias, but it is crucial to always 
 Examples of biases include:
 
 - **\textcolor{red}{Loss to follow-up bias}**: participants leave the study in such a way that it distorts the relationship between the exposure and outcome
-- **\textcolor{blue}{Confounding bias}**: the relationship between exposure and outcome among those in your study is _confounded_ by other variables (more later)
-- **\textcolor{blue}{Recall bias}**: individuals are being asked about exposures or outcomes that they do not remember correctly
-- **\textcolor{blue}{Social desirability bias}**: individuals are not comfortable disclosing their true exposure or outcome status for fear of judgement by others
+- **\textcolor{purple}{Confounding bias}**: the relationship between exposure and outcome among those in your study is _confounded_ by other variables (more later)
+- **\textcolor{purple}{Recall bias}**: individuals are being asked about exposures or outcomes that they do not remember correctly
+- **\textcolor{purple}{Social desirability bias}**: individuals are not comfortable disclosing their true exposure or outcome status for fear of judgement by others
 
 This is by no means an exhaustive list. See [a catalogue of bias](https://catalogofbias.org/biases/) for a taxonomy and more examples.
 
@@ -410,28 +408,35 @@ How do we actually estimate $\theta$ in $Y = f(\theta)$? There are a variety of 
 
 Inference is about making our **best guess** about $\theta$, and providing some degree of **confidence** in that guess (typically 95% confidence). This may also include a **p-value** for a hypothesis test.
 
-Let's walk into these three elements in more detail -- (1) point estimates, (2) confidence intervals, and (3) p-values.
+In epidemiology, we only get to do a study once. **But in statistical inference, we use tools that are derived by *thinking about* what it would look like if we replicated the same experiment multiple times.**
+
+Let's walk into these three elements in more detail for our stroke example
+
+1. point estimates
+2. confidence intervals
+3. p-values
 
 ## Inference: Point Estimates
 
-In order to make the "best guess" for the parameter we use information about the distribution that is specified (e.g. normal distribution) and combine all of the observations together to figure out what value of $\theta$ is the **most likely**.
+In order to make the "best guess" for the $e^{\beta}$ parameter, which represents the odds ratio of death after stroke comparing treatment to controls, we use information about the distribution that is specified (e.g. bernoulli distribution) and combine all of the observations together to figure out what value of $\beta$ is the **most likely**.
 
-The **most likely** value is reported as the **point estimate**.  
+This **most likely** value is reported as the **point estimate**.
   
-*"We estimate a risk ratio of **1.10**, meaning that there was a 10% increased risk of having the outcome in the exposed group compared to controls."*
+*"We estimate an odds ratio of **0.6**, meaning that there was a 40% decreased risk of death in the treated group compared to untreated group."*
 
 ## Inference: Confidence Intervals
 
 Confidence intervals (typically 95%) represent the degree of uncertainty that we have in our point estimate.
 
-The interpretation is a bit counter-intuitive: if this experiment were to be replicated 100 times, 95 of the confidence intervals constructed in these experiments would cover the **true parameter**.
+The precise statistical definition: if this experiment were to be replicated 100 times, 95 of the confidence intervals for the parameter constructed in these experiments would cover the **true parameter**.
 
-*"We estimate a risk ratio of **1.10 (1.05 - 1.15)**, meaning that there was a 10% (5% - 15%) increased risk of having the outcome in the exposed group compared to controls."*
+The epidemiological interpretation: "the range of plausible values for the parameter".
+
+*"We estimate an odds ratio of **0.6, with a range of plausible values being between 0.5 - 0.7**, meaning that there was a 40% (30% - 50%) decrease in the risk of death in the treated group compared to untreated group."*
 
 ## Inference: P-Values
 
-If we have some estimate of $\theta$, $\hat{\theta}$, p-values make sense in the context of a **hypothesis test**. It might look something like this:
-
+If we have some estimate of $\theta$, p-values make sense in the context of a **hypothesis test**. It might look something like this:
 $$
 H_0: \theta = 0 \quad H_1: \theta \neq 0
 $$
@@ -440,13 +445,19 @@ This means: my **null** hypothesis is that $\theta = 0$. In linear regression, i
 
 A **p-value** of 0.05 has the following interpretation: the chance of seeing a result this extreme or more extreme **if the null hypothesis were true** is 5%.
 
-*"We estimate a risk ratio of **1.10** with a p-value of 0.02. If there were truly no increased risk, there is a 2% chance we would see a result this extreme or more extreme."*
+In our earlier example, you might write a statement like this:
 
-## Inference: P-Values Example
+*"We estimate an odds ratio of **0.6** with a p-value of 0.2. If there were truly no decrease in odds of death after stroke by taking the treatment, there is a 20% chance we would see an odds ratio at least this different from 0."*
 
-To understand intuitively what the p-value tells us, consider running 100 experiments to estimate a mean (true value of 0). Here are 100 simulations for three different sample sizes: 10, 100, and 1000.
+Sounds promising, right? _**Would you prescribe this drug your patients?**_
 
-Imagine taking a sample of the population and estimating the mean to be 0.5 (dotted line). If the null were true, how extreme would this value be? The punch line: **it depends on the sample size!**
+## Inference: P-Values Example (1/3)
+
+Let's explore p-values from another angle. Consider that the true decrease in odds of death is 0.0%, so the odds ratio is 1.0, or the log odds ratio is 0.
+
+Consider running our stroke experiment 300 times, each time on a new set of people. In the first 100 experiments, we sample 10 people and randomize them to treatment or control. In the second 100 experiments, we sample 100 people, and in the third, 1000 people.
+
+This is what the distributions of log odds ratios might look like.
 
 ```{r, fig.width=5, fig.height=2.5}
 set.seed(0)
@@ -461,16 +472,89 @@ seqs <- seq(lims[1], lims[2], 0.07)
 seqs <- c(seqs, lims[2])
 
 par(mfrow=c(1, 3))
-hist(sims_1, col=rgb(1,0,0,0.5), freq=F, main="100 experiments \nwith sample size = 10", xlab="", xlim=lims, breaks=seqs, ylim=c(0, 8), cex.main=0.8)
+hist(sims_1, col=rgb(1,0,0,0.5), freq=F, main="Histogram of 100 experiments \nwith sample size = 10", xlab="log odds ratio", xlim=lims, breaks=seqs, ylim=c(0, 8), cex.main=0.8)
 abline(v=0.0)
-abline(v=0.5, lty='dotted')
-hist(sims_2, col=rgb(0,1,0,0.5), freq=F, main="100 experiments \nwith sample size = 100", xlab="", xlim=lims, breaks=seqs, ylim=c(0, 8), cex.main=0.8)
-abline(v=0.5, lty='dotted')
+hist(sims_2, col=rgb(0,1,0,0.5), freq=F, main="Histogram of 100 experiments \nwith sample size = 100", xlab="log odds ratio", xlim=lims, breaks=seqs, ylim=c(0, 8), cex.main=0.8)
 abline(v=0.0)
-hist(sims_3, col=rgb(0,0,1,0.5), freq=F, main="100 experiments \nwith sample size = 1000", xlab="", xlim=lims, breaks=seqs, ylim=c(0, 8), cex.main=0.8)
-abline(v=0.5, lty='dotted')
+hist(sims_3, col=rgb(0,0,1,0.5), freq=F, main="Histogram of 100 experiments \nwith sample size = 1000", xlab="log odds ratio", xlim=lims, breaks=seqs, ylim=c(0, 8), cex.main=0.8)
 abline(v=0.0)
 ```
+
+## Inference: P-Values Example (2/3)
+
+Now consider that you're back in the real world and you only get one shot to do a stroke experiment. You estimate a log odds ratio of -0.5 (odds ratio 0.6; 40% decrease in odds). If the experimental drug truly had no effect, how surprising would this estimate be?
+
+The punch line: **it depends on the sample size of your experiment!** You get a smaller p-value with a larger sample size.
+
+In this case, the effect is pretty large. A 40% decrease in odds of death!
+
+```{r, fig.width=5, fig.height=2.5}
+set.seed(0)
+sims <- 100
+
+sims_1 <- replicate(sims, rnorm(10, mean=0, sd=2)) %>% colMeans()
+sims_2 <- replicate(sims, rnorm(100, mean=0, sd=2)) %>% colMeans()
+sims_3 <- replicate(sims, rnorm(1000, mean=0, sd=2)) %>% colMeans()
+
+lims <- c(min(c(sims_1, sims_2, sims_3)), max(c(sims_1, sims_2, sims_3)))
+seqs <- seq(lims[1], lims[2], 0.07)
+seqs <- c(seqs, lims[2])
+
+par(mfrow=c(1, 3))
+hist(sims_1, col=rgb(1,0,0,0.5), freq=F, main="Histogram of 100 experiments \nwith sample size = 10", xlab="log odds ratio", xlim=lims, breaks=seqs, ylim=c(0, 8), cex.main=0.8)
+abline(v=-0.5, lty='dotted')
+abline(v=0.0)
+hist(sims_2, col=rgb(0,1,0,0.5), freq=F, main="Histogram of 100 experiments \nwith sample size = 100", xlab="log odds ratio", xlim=lims, breaks=seqs, ylim=c(0, 8), cex.main=0.8)
+abline(v=-0.5, lty='dotted')
+abline(v=0.0)
+hist(sims_3, col=rgb(0,0,1,0.5), freq=F, main="Histogram of 100 experiments \nwith sample size = 1000", xlab="log odds ratio", xlim=lims, breaks=seqs, ylim=c(0, 8), cex.main=0.8)
+abline(v=-0.5, lty='dotted')
+abline(v=0.0)
+```
+
+## Inference: P-Values Example (3/3)
+
+This time when you do an experiment, you sample 10,000 people and you get an odds ratio of 0.99 with a p-value of 0.00001.
+
+That is a *really small p-value*. If the experimental drug truly had no effect, this result would be very surprising. We're very sure this drug works. But do you really care about to prescribing a drug to your patients if it only translates to a 1% reduction in the odds of death?
+
+P-values communicate statistical significance, which is important, but **point estimates and confidence intervals communicate clinical significance.**
+
+## Key Take-Aways
+
+- A good study has meticulously defined its exposure(s), outcome(s), and population(s).
+- Always be on the lookout for hidden biases and question whether or not the study authors accounted for them.
+- It is important to consider the data generating process when parametrizing a statistical model.
+- Point estimates (or "effect sizes") and confidence intervals are the most clinically relevant quantities to consider. **P-values cannot communicate clinical relevance.**
+
+## Discussion Articles
+
+Next week we will discuss the following journal articles:
+
+1. Anang et al. 2014. Predictors of dementia in Parkinson disease: A prospective cohort study. *Neurology* 83 (14). https://doi.org/10.1212/WNL.0000000000000842.
+2. Caunca et al. 2019. Measures of obesity are associated with MR markers of brain aging: The Northern Manhattan Study. *Neurology*, 93:e791-e803.  https://doi.org/10.1212/WNL.0000000000007966.
+
+## Disscussion Articles: Questions (1/2)
+
+1. What is the scientific question of interest? Cearly define the exposure, outcome, and study population.
+2. What study design did the authors use to gather data, and was it appropriate? Were there alternative study designs that could have been used?
+3. Are there any sources of bias introduced from the study design including in who was included in the study population or how the exposure and/or outcome were ascertained that hinder the authors' ability to answer their scientific question?
+
+## Discussion Articles: Questions (2/2)
+
+4. How did the authors formulate their hypothesis into a statistical model? What assumptions did the authors make when they chose that statistical model? Do you think that the assumptions they made limit their ability to answer their scientific question of interest?
+5. How did the authors interpret the results of their analysis? Did they emphasize clinical significance or statistical significance?
+6. How did the authors frame the limitations and implications of their results? Were they cognizant of their assumptions and potential biases?
+
+## Thank you!
+
+Questions?
+
+## Supplemental Material
+
+## Confidence Interval: Diagram
+
+![](../media/confidence-interval.png)
 
 ## Inference: Experiments
 
@@ -520,33 +604,3 @@ for(i in 1:4){
   beeswarm_sim(n=10000, mean1=2.0, mean2=2.5, add_means=TRUE, add_beeswarm=FALSE, main=paste0("Experiment ", i))
 }
 ```
-
-## Key Take-Aways
-
-- A good study has meticulously defined its exposure(s), outcome(s), and population(s).
-- Always be on the lookout for hidden biases and question whether or not the study authors accounted for them.
-- It is important to consider the data generating process when parametrizing a statistical model.
-- Point estimates (or "effect sizes") and confidence intervals are the most clinically relevant quantities to consider. **P-values cannot communicate clinical relevance.**
-
-## Discussion Articles
-
-Next week we will discuss the following journal articles:
-
-1. Anang et al. 2014. Predictors of dementia in Parkinson disease: A prospective cohort study. *Neurology* 83 (14). https://doi.org/10.1212/WNL.0000000000000842.
-2. Caunca et al. 2019. Measures of obesity are associated with MR markers of brain aging: The Northern Manhattan Study. *Neurology*, 93:e791-e803.  https://doi.org/10.1212/WNL.0000000000007966.
-
-## Disscussion Articles: Questions (1/2)
-
-1. What is the scientific question of interest? Cearly define the exposure, outcome, and study population.
-2. What study design did the authors use to gather data, and was it appropriate? Were there alternative study designs that could have been used?
-3. Are there any sources of bias introduced from the study design including in who was included in the study population or how the exposure and/or outcome were ascertained that hinder the authors' ability to answer their scientific question?
-
-## Discussion Articles: Questions (2/2)
-
-4. How did the authors formulate their hypothesis into a statistical model? What assumptions did the authors make when they chose that statistical model? Do you think that the assumptions they made limit their ability to answer their scientific question of interest?
-5. How did the authors interpret the results of their analysis? Did they emphasize clinical significance or statistical significance?
-6. How did the authors frame the limitations and implications of their results? Were they cognizant of their assumptions and potential biases?
-
-## Thank you!
-
-Questions?
